@@ -2,7 +2,27 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   
-  
+  def define_inventor
+    current_user.category = 'inventor'
+    current_user.save
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user)}
+    end
+  end
+  def define_vendor
+   current_user.category = 'vendor'
+    current_user.save
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user)}
+    end
+  end
+  def define_costumer
+    current_user.category = 'costumer'
+    current_user.save
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user)}
+    end
+  end
   
   def index
     @users = User.all
@@ -18,10 +38,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @personal_info = @user.personal_info
-    @projects = @user.projects.paginate(:page => params[:page])
+    @projects = @user.projects.paginate(:page => params[:page], :per_page => 2)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
+      format.js
     end
   end
 

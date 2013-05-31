@@ -1,0 +1,4 @@
+class AddImageToPersonalInfo < ActiveRecord::Migration
+  def change
+  end
+end

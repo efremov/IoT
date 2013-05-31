@@ -1,17 +1,15 @@
 class Project < ActiveRecord::Base
-<<<<<<< HEAD
+
   attr_accessible :description, :image
 
 
-=======
+
   attr_accessible :description
-  belongs_to :user, foreign_key: :user_id
->>>>>>> ec34795b3fd3db4a9168b2ee204109ec183d76ce
+
   validates :description, presence: true
   validates :user_id, presence: true
-	validates_attachment :image, presence: :true,
-															content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']},
-															size: {less_than: 5.megabytes}
+  validates_attachment :image
+															content_type: { content_type: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']},															size: {less_than: 5.megabytes}
 
   belongs_to :user
   has_attached_file :image, styles: { medium: "320x240>"}

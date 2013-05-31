@@ -4,11 +4,12 @@ before_filter :authenticate_user!, except: [:index]
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.order("created_at desc")
+    @projects = Project.order("created_at desc").paginate(:page => params[:page], :per_page => 4)
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
+      format.js
     end
   end
 
@@ -42,12 +43,12 @@ before_filter :authenticate_user!, except: [:index]
   # POST /projects
   # POST /projects.json
   def create
-<<<<<<< HEAD
+
     @project = current_user.projects.new(params[:project])
 
-=======
+
     @project = current_user.projects.build(params[:project])
->>>>>>> ec34795b3fd3db4a9168b2ee204109ec183d76ce
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to user_project_path(@project.user, @project), notice: 'Project was successfully created.' }

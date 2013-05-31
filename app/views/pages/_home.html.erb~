@@ -1,0 +1,35 @@
+<% if user_signed_in? %>
+<h1> <a href= <%= user_path(current_user)%> >You're </a> logged into the IoT Marketplace!</h1>
+ <% if current_user.category== nil %>
+ <h1> Who are you?</h1>
+  <div class="row-fluid">
+      <div class="span4">
+        <img class="marketing-img" src="">
+        <h2>Inventor</h2>
+        <p>texttext1text1 <a href=<%= def_inventor_path%> >Inventor</a> </p>
+      </div>
+      <div class="span4">
+        <img class="marketing-img" src="">
+        <h2>Vendor</h2>
+        <p> text2text2text2 <a href=<%= def_vendor_path%> > Vendor</a> </p>
+      </div>
+      <div class="span4">
+        <img class="marketing-img" src="">
+        <h2>Costumer</h2>
+        <p> text3text3text3<a href=<%= def_costumer_path%> >Costumer</a></p>
+      </div>
+    </div>
+<p> Who are you? </p>
+<% end %>
+<% else %>
+<div class="center hero-unit">
+<h1>Welcome to IoT Connect</h1>
+<p>You're found the homepage for the Internet of Things Marketplace</p>
+<p>
+	<%= link_to "Sign up Now", new_user_registration_path, class: "btn btn-primary btn-large"  %> 
+	<%= link_to 'Sign in with facebook', user_omniauth_authorize_path(:facebook), class: "btn btn-primary btn-large"%>
+</p>
+</div>
+
+<% end %>
+

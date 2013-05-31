@@ -9,13 +9,14 @@
             - @personal_info.errors.full_messages.each do |msg|
               %li= msg
 
+ 
       = f.text_field :name, :placeholder => "Name"
       = f.text_field :surname, :placeholder => "Surname"
       = f.number_field :age, :placeholder => "Age"
-      .field
-        #image_tag(@personal_info.image.thumb.url) if @personal_info.image?
-        #f.file_field :image, :placeholder => "Photo"
-        #f.hidden_field :image_cache
+     
+      .field 
+        = f.label "Upload an image"
+        = f.input :image
       = f.text_field :country, :placeholder => "Country"
       = f.text_field :about, :placeholder => "About you"
       .actions

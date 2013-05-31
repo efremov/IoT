@@ -11,8 +11,9 @@ Iotmarket::Application.routes.draw do
   end
 
   get 'about' => 'pages#about'
-
-
+  get 'def_inventor' => 'users#define_inventor'
+  get 'def_vendor' => 'users#define_vendor'
+  get 'def_costumer' => 'users#define_costumer'
   root :to => 'projects#index'
 
   # The priority is based upon order of creation:

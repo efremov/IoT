@@ -1,0 +1,4 @@
+$('.project1').append('#{escape_javascript(render @projects)}');
+$('a.load-more-projects').attr('href', '#{user_path(:page => @projects.next_page)}');
+- unless @projects.next_page
+  $('a.load-more-projects').remove();

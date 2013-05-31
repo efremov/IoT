@@ -4,6 +4,7 @@
 <div id="projects">
   <%= render @projects %>
 </div>
+<%= link_to 'Loading more projects', root_path(:page => @projects.next_page), :remote => true, :class => 'load-more-projects' if @projects.next_page %>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -15,7 +16,14 @@
 </thead>
 
   <tbody>
-    <%= render @projects %>
+    <%= @projects.each do |project| %>
+      <tr>
+        <td><%= project.description %></td>
+        <td><%= link_to 'Show', user_project_path(project.user, project) %></td>
+        <td><%= link_to 'Edit', edit_user_project_path(project.user, project) %></td>
+        <td><%= link_to 'Destroy', user_project_path(project.user, project), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     </tr>
+    <% end %>
   </tbody>
 </table>
 
