@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @personal_info.name
+%p
+  %b Surname:
+  = @personal_info.surname
+%p
+  %b Gender:
+  = @personal_info.gender
+%p
+  %b Age:
+  = @personal_info.age
+%p
+  %b Image:
+  = @personal_info.image
+%p
+  %b Country:
+  = @personal_info.country
+%p
+  %b Marital status:
+  = @personal_info.marital_status
+%p
+  %b Credo:
+  = @personal_info.credo
+%p
+  %b Religion:
+  = @personal_info.religion
+%p
+  %b Political views:
+  = @personal_info.political_views
+%p
+  %b Smf more:
+  = @personal_info.smf_more
+
+= link_to 'Edit', edit_personal_info_path(@personal_info)
+\|
+= link_to 'Back', personal_infos_path

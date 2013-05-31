@@ -1,0 +1,82 @@
+.row-fluid
+  .span4.box-shadow
+    -if @user
+      %ul.thumbnails
+        %li.span12
+          - if @personal_info 
+            if @personal_info.image
+            .thumbnail
+              .img-polaroid
+                image_tag(@personal_info.image)    
+            %dl.dl-horizontal
+              - unless @personal_info.name == ""
+                %dt Name:
+                %dd= @personal_info.name
+              - unless @personal_info.surname == ""
+                %dt Surname:
+                %dd= @personal_info.surname
+              - unless @personal_info.age == nil
+                %dt Age:
+                %dd= @personal_info.age
+              - unless @personal_info.country == ""
+                %dt Country:
+                %dd= @personal_info.country
+              - unless @personal_info.about == ""
+                %dt Whatever about you:
+                %dd= @personal_info.about
+
+      - if current_user == @user
+        - if @personal_info
+          %a{:href =>"#{edit_user_personal_info_path(current_user, @personal_info)}", :style => "background-color: inherit; color: inherit"} Edit 
+        - unless
+          %a{:href =>"#{new_user_personal_info_path(current_user, @personal_info)}", :style => "background-color: inherit; color: inherit"} Add personall info
+      %a{:href =>"#{users_path}", :style => "background-color: inherit; color: inherit"} Back
+      
+      - unless @user == current_user
+        - if @personal_info
+          - if @user.id = 100000
+            %a{:href =>"#", :style => "background-color: inherit; color: inherit", 'data-method' => 'post'} Follow
+          - else
+            %a{:href =>"#", :style => "background-color: inherit; color: inherit", 'data-method' => 'delete'} Unfollow
+  .span8
+    -if @user == current_user
+      %strong= link_to 'Create new project', new_user_project_path(current_user)
+    .tabbables.tabs-right
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#tab1"} 
+            .shadow Projects
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"}
+            .shadow Interesting projects
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab3"} 
+            .shadow Friends
+      .tab-content
+        #tab1.tab-pane.active
+          - @projects.each do |project| 
+            %h2
+              %a{:href =>"#{user_project_path(project)}", :style => "background-color: inherit;"} #{'project.name'}
+            %blockquote
+              %strong= project.description
+              %h4 project.rate
+          %hr.featurette-divider 
+          = will_paginate @projects
+        #tab2.tab-pane
+          @interesting_projects.each do |interesting_project|           
+          %h2
+            %a{:href =>"", :style => "background-color: inherit;"} #{'interesting_project.name'} 
+          %blockquote
+            %strong interesting_project.description
+            %h4 interesting_project.rate
+          %hr.featurette-divider   
+        #tab3.tab-pane
+          @folowers.each do |folower|
+          @friend = User.find(folower.thinker_id)
+          if @friend
+          if @friend.personal_info
+          .featurette
+            %em.lead
+              %a{:href =>"#", :style => "background-color: inherit; color: inherit"} #{'@friend.personal_info.name'}  
+          %hr.featurette-divider
+

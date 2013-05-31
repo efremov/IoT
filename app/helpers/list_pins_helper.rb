@@ -1,0 +1,2 @@
+module ListPinsHelper
+end

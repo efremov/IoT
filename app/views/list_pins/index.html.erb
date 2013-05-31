@@ -1,0 +1,23 @@
+<h1>Listing list_pins</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @list_pins.each do |list_pin| %>
+  <tr>
+    <td><%= list_pin.description %></td>
+    <td><%= link_to 'Show', list_pin %></td>
+    <td><%= link_to 'Edit', edit_list_pin_path(list_pin) %></td>
+    <td><%= link_to 'Destroy', list_pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New List pin', new_list_pin_path %>

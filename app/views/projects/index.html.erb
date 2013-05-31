@@ -1,0 +1,25 @@
+<%= render 'pages/home' %>
+
+
+<div id="projects">
+  <%= render @projects %>
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+
+  <tbody>
+    <%= render @projects %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Project', new_user_project_path(1) %>
+
